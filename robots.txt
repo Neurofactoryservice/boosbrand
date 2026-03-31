@@ -1,0 +1,22 @@
+# Robots.txt — BoosBrand
+User-agent: *
+Allow: /
+Disallow: /app
+Disallow: /api/
+Disallow: /*.env
+Disallow: /data/
+Disallow: /neurofactory.db
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /app
+Disallow: /api/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://boosbrand.onrender.com/sitemap.xml
+Sitemap: https://boosbrand.onrender.com/sitemap-images.xml
+Host: https://boosbrand.onrender.com
