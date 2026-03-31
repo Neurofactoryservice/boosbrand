@@ -141,10 +141,14 @@ def require_active(f):
 
 def send_file_safe(filename, fallback=None):
     """Sert un fichier HTML avec gestion d'erreur propre."""
-    p=Path(filename)
-    if p.exists() and p.is_file(): return send_file(filename)
-    if fallback and Path(fallback).exists(): return send_file(fallback)
-    return ("Page introuvable",404)
+    # Résoudre le chemin par rapport au dossier du script (robuste sur Render)
+    base = Path(__file__).parent
+    p = base / filename
+    if p.exists() and p.is_file(): return send_from_directory(str(base), filename)
+    if fallback:
+        pf = base / fallback
+        if pf.exists(): return send_from_directory(str(base), fallback)
+    return ("Page introuvable", 404)
 
 # ── Pages statiques ──────────────────────────────────────────
 @app.route("/")
